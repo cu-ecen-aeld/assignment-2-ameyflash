@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
 echo "Checking for arguments..."
 if [ $# -lt 2 ]; then
     echo "Error : Arguments not specified correctly!!!"
+    echo "Usage: $ ./finder.sh <filedir> <searchstr>"
     exit 1
 else
     echo "Pass"
@@ -22,11 +23,10 @@ else
     exit 1
 fi
 
+# count number of files in the directory
 filecount=$(find $filesdir -type f | wc -l)
 
-for f in $filesdir
-do
-    linecount=$(grep -r $searchstr $filesdir | wc -l)
-done
+# count number of lines with given word in the directory
+linecount=$(grep -r $searchstr $filesdir | wc -l)
 
 echo "The number of files are $filecount and the number of matching lines are $linecount"
